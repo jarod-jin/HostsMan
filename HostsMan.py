@@ -39,7 +39,10 @@ def read_host (host_path):
     return host_content
 
 def copy_old_host(host_path):
-    filefullName = cur_file_dir()+'/hostsbak/hosts'+time.strftime('%Y%m%d%H%M%S', time.localtime(time.time()))+'.bak'
+    bakpath = cur_file_dir() + '/hostsbak'
+    if os.path.exists(bakpath)==False:
+        os.makedirs(bakpath)
+    filefullName = bakpath +'/hosts'+time.strftime('%Y%m%d%H%M%S', time.localtime(time.time()))+'.bak'
     shutil.copy(host_path,filefullName)
 
 
